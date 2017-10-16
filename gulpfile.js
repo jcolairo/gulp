@@ -6,7 +6,6 @@ var rename = require('gulp-rename');
 
 // first task
 // Scripts task
-
 gulp.task('scripts', function() {
   gulp.src(['app/js/**/*.js', '!app/js/**/*.min.js'] )
     .pipe(rename({suffix: '.min'}))
@@ -14,6 +13,10 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('app/js'));
 });
 
-// default task
+// watch task
+gulp.task('watch', function() {
+  gulp.watch('app/js/**/*.js', ['scripts']);
+});
 
-gulp.task('default', ['scripts']);
+// default task
+gulp.task('default', ['scripts', 'watch']);
