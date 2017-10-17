@@ -2,7 +2,8 @@
 var gulp   = require('gulp');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
-var sass = require('gulp-sass');
+var sass   = require('gulp-sass');
+// var autoprefixer = require('gulp-autoprefixer');
 
 // first task
 // Scripts task
@@ -13,18 +14,18 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('app/js'));
 });
 
-// compass / sass task
+// sass task
 gulp.task('sass', function() {
-  return gulp.src('app/scss/**/*.scss')
+  gulp.src('app/scss/*.scss')
     .pipe(sass())
-    .pipe(uglify())
+    // .pipe(autoprefixer({browsers: ['last 3 versions']}))
     .pipe(gulp.dest('app/css'));
 });
 
 // watch task
 gulp.task('watch', function() {
-  gulp.watch('app/js/**/*.js', ['scripts', 'sass']);
+  gulp.watch('app/js/**/*.js', ['scripts']);
 });
 
 // default task
-gulp.task('default', ['scripts', 'watch', 'sass']);
+gulp.task('default', ['sass', 'scripts', 'watch']);
