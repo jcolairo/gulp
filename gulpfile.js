@@ -25,11 +25,17 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('app/css'));
 });
 
+// HTML task
+gulp.task('html', function() {
+  gulp.src('app/**/*.html');
+});
+
 // watch task
 gulp.task('watch', function() {
   gulp.watch('app/js/**/*.js', ['scripts']);
   gulp.watch('app/scss/*.scss', ['sass']);
+  gulp.watch('app/**/*.html', ['html']);
 });
 
 // default task
-gulp.task('default', ['sass', 'scripts', 'watch']);
+gulp.task('default', ['sass', 'scripts', 'watch', 'html']);
